@@ -6,51 +6,69 @@ package calculator;
  * @since 1.0.0
  */
 class Calculator {
-
+//bn
     String calculate(String[] expression) {
         double a = Double.parseDouble(expression[0]);
         double b = Double.parseDouble(expression[2]);
-
+        double c = Double.parseDouble(expression[4]);
+        String op1 = expression[1];
+        String op2 = expression[3];
         double result;
-        switch (expression[1]) {
-            case "+":
-                result = a + b;
+        switch (op1+op2){
+            case "+-":
+                result = a + b + c;
                 break;
-            case "-":
-                result = a - b;
+            case "+*":
+                result = a + b * c;
                 break;
-            case "*":
-                result = a * b;
+            case "+/":
+                result = a + b / c;
                 break;
-            case "/":
-                result = a / b;
+            case "++":
+                result = a + b + c;
+                break;
+            case "-/":
+                result = a - b / c;
+                break;
+            case "-*":
+                result = a - b * c;
+                break;
+            case "**":
+                result = a * b * c;
+                break;
+            case "//":
+                result = a / b / c;
+                break;
+            case "/-":
+                result = a / b - c;
+                break;
+            case "/+":
+                result = a / b + c;
+                break;
+            case "*+":
+                result = a * b + c;
+                break;
+            case "*-":
+                result = a * b - c;
+                break;
+            case "--":
+                result = a - b - c;
                 break;
 
 
             default:
                 return "ERROR";
         }
-        if (expression.length < 4){
-            return String.valueOf(result);
-        }
-        double c = Double.parseDouble(expression[4]);
-        switch (expression[3]) {
-            case "+":
-                result = result + c;
-                break;
-            case "-":
-                result = result - c;
-                break;
-            case "*":
-                result = result * c;
-                break;
-            case "/":
-                result = result / c;
-                break;
 
 
-        }
-        return String.valueOf(result);
+return String.valueOf(result);
+
+
+
+
+
+
+
     }
 
 }
