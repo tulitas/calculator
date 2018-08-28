@@ -6,69 +6,28 @@ package calculator;
  * @since 1.0.0
  */
 class Calculator {
-//bn
+    //bn
     String calculate(String[] expression) {
-        double a = Double.parseDouble(expression[0]);
-        double b = Double.parseDouble(expression[2]);
-        double c = Double.parseDouble(expression[4]);
-        String op1 = expression[1];
-        String op2 = expression[3];
-        double result;
-        switch (op1+op2){
-            case "+-":
-                result = a + b + c;
-                break;
-            case "+*":
-                result = a + b * c;
-                break;
-            case "+/":
-                result = a + b / c;
-                break;
-            case "++":
-                result = a + b + c;
-                break;
-            case "-/":
-                result = a - b / c;
-                break;
-            case "-*":
-                result = a - b * c;
-                break;
-            case "**":
-                result = a * b * c;
-                break;
-            case "//":
-                result = a / b / c;
-                break;
-            case "/-":
-                result = a / b - c;
-                break;
-            case "/+":
-                result = a / b + c;
-                break;
-            case "*+":
-                result = a * b + c;
-                break;
-            case "*-":
-                result = a * b - c;
-                break;
-            case "--":
-                result = a - b - c;
-                break;
 
-
-            default:
-                return "ERROR";
+        double result = Double.parseDouble(expression[0]);
+        for (int i = 1; i < expression.length; i += 2) {
+            String op = expression[i];
+            double b = Double.parseDouble(expression[i + 1]);
+            switch (op){
+                case "+":
+                    result += b;
+                    break;
+                case "-":
+                    result -= b;
+                    break;
+                    default:
+                        return "ERROR";
+}
         }
 
-
-return String.valueOf(result);
-
-
-
-
-
-
+        return String.valueOf(result);
 
     }
+
 
 }
