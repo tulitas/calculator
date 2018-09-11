@@ -11,13 +11,35 @@ import java.util.List;
 class Calculator {
 
     String calculate(String[] expression) {
+        List<String> tmp = new ArrayList<>(List.of(expression));
+        //ishem skobki i peredaem virazenija v nih metodu calculate
+        int brOpenIdx = -1;
+        do {
+            brOpenIdx = -1;
+            for (int i = 0; i < tmp.size(); i++) {
+                String a = tmp.get(i);
+                if (a.equals("(")) {
+                    brOpenIdx = i;
+                } else if (a.equals(")")) {
+                    var inBr = tmp.subList(brOpenIdx + 1, i);
+                    var result = calculate(inBr);
+                    tmp.subList(brOpenIdx, i + 1).clear();
+                    tmp.add(brOpenIdx, result);
+                }
+            }
+        } while (brOpenIdx != -1);
+
+        return calculate(tmp);
+    }
+
+    String calculate(List<String> expression) {
 
         List<String> tmp = new ArrayList<>();
 
-        double a = Double.parseDouble(expression[0]);
-        for (int i = 1; i < expression.length; i += 2) {
-            String op = expression[i];
-            double b = Double.parseDouble(expression[i + 1]);
+        double a = Double.parseDouble(expression.get(0));
+        for (int i = 1; i < expression.size(); i += 2) {
+            String op = expression.get(i);
+            double b = Double.parseDouble(expression.get(i + 1));
             switch (op) {
                 case "+":
                 case "-":
